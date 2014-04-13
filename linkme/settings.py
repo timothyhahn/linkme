@@ -4,4 +4,4 @@ if os.environ.get('DATABASE_URL'):
 else:
     DATABASE_PATH = 'sqlite:///linkme.db'
 SECRET_KEY = 'secret'
-DEBUG = True 
+DEBUG = False 
