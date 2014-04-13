@@ -1,0 +1,31 @@
+<div class="container" ng-controller="PostCtrl as app">
+  <h2><a href="{{ app.post.link }}"> {{ app.post.title }}</a></h2>
+  <hr />
+  <h4>Comments</h4>
+
+  <table class="table">
+    <tr ng-repeat="comment in app.post.comments | orderBy: 'score':true">
+      <td style="width: 50px; margin-right: 5px;"> {{ comment.score }} 
+        <span style="float:right;">
+          <div><a href="#/posts/{{ app.post.id }}" ng-click="app.updateComment(comment, true)"><i class="fa fa-arrow-circle-o-up"></i></a></div>
+          <div><a href="#/posts/{{ app.post.id }}" ng-click="app.updateComment(comment, false)"><i class="fa fa-arrow-circle-o-down"></i></a></div>
+        </span> 
+      </td>
+      <td> 
+        <div>{{ comment.content }}</div>
+      </td>
+    </tr>
+  </table>
+
+  <div>
+    <form role="form">
+        <br />
+        <input type="text" class="form-control" id="newContent" placeholder="Give me a comment!"></input>
+        <br />
+        <button type="submit" class="btn btn-info" ng-click="app.addComment()">Post!</button>
+    </form>
+  </div>
+
+</div>
+
+
