@@ -1,5 +1,6 @@
 from . import db
 from sqlalchemy import Column, Integer, Text, ForeignKey
+from urlparse import urlparse
 
 class Post(db.Model):
     id = Column(Integer, primary_key=True)
@@ -11,7 +12,11 @@ class Post(db.Model):
     def __init__(self, title, link):
         self.score = 0
         self.title = title
-        self.link = link
+        url = urlparse(link)
+        scheme = 'http'
+        if url.scheme:
+            scheme = url.scheme
+        self.link = '%s://%s%s' % (scheme, url.netloc, url.path)
 
 
 class Comment(db.Model):
